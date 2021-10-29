@@ -1,23 +1,19 @@
 import React from 'react';
-
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
-
+import {Button, SafeAreaView, StyleSheet} from 'react-native';
 import {List} from './components/molecules/List';
-import {DropdownPicker} from './components/molecules/Picker';
+import SearchBox from './components/organisms/SearchBox';
+import {
+  PatientContext,
+  PatientContextProvider,
+} from './contexts/PatientContext/PatientContext';
 const App = () => {
-  const onChangeText = text => {
-    console.log(text);
-  };
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={text => onChangeText(text)}
-        placeholder="Type search key"
-      />
-      <DropdownPicker />
-      <List />
-    </SafeAreaView>
+    <PatientContextProvider>
+      <SafeAreaView style={styles.mainContainer}>
+        <SearchBox />
+        <List />
+      </SafeAreaView>
+    </PatientContextProvider>
   );
 };
 
