@@ -6,6 +6,12 @@ export const PatientContextProvider = ({children}) => {
   const [currentFilter, setCurrentFilter] = useState('name');
   const [searchExpression, setSearchExpression] = useState('');
   const [patientList, setPatientList] = useState([]);
+  const [asteriskRadioArray, setAsteriskRadioArray] = useState([
+    {selected: true, id: 0, title: 'Starts with'},
+    {selected: false, id: 1, title: 'Ends with'},
+    {selected: false, id: 2, title: 'Includes'},
+    {selected: false, id: 3, title: 'Exact'},
+  ]);
   const [tagObj, setTagObj] = useState({
     name: '',
     nationalid: '',
@@ -22,6 +28,18 @@ export const PatientContextProvider = ({children}) => {
     }
   }, [searchExpression]);
 
+  const updateAsteriskOption = id => {
+    let options = [...asteriskRadioArray];
+    options.map(element => {
+      element.selected = element.id === id ? true : false;
+    });
+    setAsteriskRadioArray(options);
+  };
+
+  const getCurrentAsteriskOption = () => {
+    return asteriskRadioArray.find(item => item.selected === true).id;
+  };
+
   const addNewSearchExp = () => {
     if (searchString.length >= 2 && isCooldown != true) {
       updateTags();
@@ -36,7 +54,15 @@ export const PatientContextProvider = ({children}) => {
 
   const updateTags = () => {
     var mutableTagObj = tagObj;
-    mutableTagObj[currentFilter] = searchString;
+    var currentAsteriskOption = getCurrentAsteriskOption();
+    mutableTagObj[currentFilter] =
+      currentAsteriskOption === 0
+        ? searchString + '*'
+        : currentAsteriskOption === 1
+        ? '*' + searchString
+        : currentAsteriskOption === 2
+        ? '*' + searchString + '*'
+        : searchString;
     setTagObj(mutableTagObj);
   };
   const setConcatQueryExpression = () => {
@@ -108,6 +134,8 @@ export const PatientContextProvider = ({children}) => {
     currentFilter,
     setCurrentFilter,
     fetchPatientData,
+    updateAsteriskOption,
+    asteriskRadioArray,
     patientList,
     tagObj,
     isCooldown,
