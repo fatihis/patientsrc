@@ -1,34 +1,30 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {styles} from './styles';
 import {FlatList} from 'react-native';
 import {Item} from '../../atoms/ListItem';
+import {PatientContext} from '../../../contexts/PatientContext/PatientContext';
 
 export const List = () => {
+  const patientCtx = useContext(PatientContext);
+
   return (
     <FlatList
-      data={[
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ]}
+      data={patientCtx.displayData}
+      style={styles.flatList}
       renderItem={item => {
         return (
           <Item
             item={item.item}
-            onPress={() => console.log('item' + item.item.id)}
+            key={item.item.id}
+            backgroundColor={
+              item.index % 2 == 0
+                ? {backgroundColor: 'lightgray'}
+                : {backgroundColor: 'white'}
+            }
+            onPress={() => console.log('item' + item.id)}
           />
         );
       }}
-      keyExtractor={item => item.id}
     />
   );
 };
