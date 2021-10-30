@@ -8,46 +8,25 @@ export const Item = ({item, onPress, textColor, backgroundColor}) => {
       onPress={onPress}
       style={[styles.itemContainer, backgroundColor]}>
       <View style={styles.itemRow}>
-        <Text
-          style={[
-            styles.itemColumn,
-            styles.flexOne,
-            textColor,
-          ]}>{`Name: ${item.name}`}</Text>
-        <Text
-          style={[
-            styles.itemColumn,
-            styles.flexTwo,
-            textColor,
-          ]}>{`Family Name: ${item.familyName}`}</Text>
-        <Text
-          style={[
-            styles.itemColumn,
-            styles.flexOne,
-            textColor,
-          ]}>{`ID: ${item.nationalId}`}</Text>
+        <Text style={[styles.itemColumn, styles.flexOne, textColor]}>
+          {item.name} {item.familyName}
+        </Text>
+        <Text style={[styles.itemColumn, styles.flexOne, textColor]}>
+          {item.nationalId}
+        </Text>
       </View>
       <View style={styles.itemRow}>
-        <Text
-          style={[
-            styles.itemColumn,
-            styles.flexOne,
-
-            textColor,
-          ]}>{`Address: ${item.address}`}</Text>
+        <Text style={[styles.itemColumn, styles.flexOne, , textColor]}>
+          {item.phone}
+        </Text>
+        <Text style={[styles.itemColumn, styles.flexOne, textColor]}>
+          {item.gender.charAt(0).toUpperCase() + item.gender.slice(1)}
+        </Text>
       </View>
       <View style={styles.itemRow}>
-        <Text
-          style={[
-            styles.itemColumn,
-            styles.flexOne,
-            ,
-            textColor,
-          ]}>{`Phone: ${item.phone}`}</Text>
-        <Text
-          style={[styles.itemColumn, styles.flexOne, textColor]}>{`Gender: ${
-          item.gender.charAt(0).toUpperCase() + item.gender.slice(1)
-        }`}</Text>
+        <Text style={[styles.itemColumn, styles.flexOne, textColor]}>
+          {item.address}
+        </Text>
       </View>
     </TouchableOpacity>
   );

@@ -6,7 +6,6 @@ import {PatientContext} from '../../../contexts/PatientContext/PatientContext';
 
 export const List = () => {
   const patientCtx = useContext(PatientContext);
-
   return (
     <FlatList
       data={patientCtx.displayData}
@@ -16,11 +15,7 @@ export const List = () => {
           <Item
             item={item.item}
             key={item.item.id}
-            backgroundColor={
-              item.index % 2 == 0
-                ? {backgroundColor: 'lightgray'}
-                : {backgroundColor: 'white'}
-            }
+            backgroundColor={(item.index = {backgroundColor: 'white'})}
             onPress={() => console.log('item' + item.id)}
           />
         );

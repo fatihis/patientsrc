@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {PickerItem} from '../../atoms/PickerItem';
 import {Picker} from '@react-native-picker/picker';
 import {styles} from './styles';

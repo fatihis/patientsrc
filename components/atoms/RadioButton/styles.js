@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     marginRight: 10,
+    color: '#757575',
   },
 });
