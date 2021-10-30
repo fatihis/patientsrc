@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {PatientContext} from '../../../contexts/PatientContext/PatientContext';
 import {RadioButton} from '../../atoms/RadioButton';
 import {styles} from './styles';
